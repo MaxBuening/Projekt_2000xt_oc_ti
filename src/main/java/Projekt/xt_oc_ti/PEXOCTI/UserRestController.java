@@ -4,10 +4,7 @@ import Projekt.xt_oc_ti.PEXOCTI.api.User;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserCreateRequest;
 import Projekt.xt_oc_ti.PEXOCTI.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,6 +22,12 @@ public class UserRestController {
     @GetMapping(path = "/api/user")
     public ResponseEntity<List<User>> user(){
         return ResponseEntity.ok(userService.findAll());
+    }
+
+    @GetMapping(path = "/api/user/{id}")
+    public ResponseEntity<User> userById(@PathVariable Long id){
+        var user = userService.findById(id);
+        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
     @PostMapping(path = "/api/user")

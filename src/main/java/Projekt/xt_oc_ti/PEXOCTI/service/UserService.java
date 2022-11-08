@@ -24,6 +24,11 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public User findById(Long id){
+        var userEntity = userRepository.findById(id);
+        return userEntity.map(this::transformEntity).orElse(null);
+    }
+
     public User create(UserCreateRequest request){
         var userEntity = new UserEntity(request.getVorname(), request.getNachname(), request.getBenutzername(), request.getPasswort());
         userEntity = userRepository.save(userEntity);
@@ -39,4 +44,6 @@ public class UserService {
                 userEntity.getPasswort()
         );
     }
+
+
 }
