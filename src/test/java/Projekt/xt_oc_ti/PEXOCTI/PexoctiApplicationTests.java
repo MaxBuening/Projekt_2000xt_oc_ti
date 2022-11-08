@@ -8,6 +8,9 @@ class PexoctiApplicationTests {
 
 	@Test
 	void contextLoads() {
+		String a = "hallo";
+
+
 	}
 
 }
