@@ -1,37 +1,47 @@
 package Projekt.xt_oc_ti.PEXOCTI.api;
 
 public class UserCreateRequest {
-    String Vorname;
-    String Nachname;
-    double income;
+    String vorname;
+    String nachname;
+    String benutzername;
+    String passwort;
 
-    public UserCreateRequest(String vorname, String nachname, double income) {
-        Vorname = vorname;
-        Nachname = nachname;
-        this.income = income;
+    public UserCreateRequest(String vorname, String nachname, String benutzername, String passwort) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.benutzername = benutzername;
+        this.passwort = passwort;
     }
 
     public String getVorname() {
-        return Vorname;
+        return vorname;
     }
 
     public void setVorname(String vorname) {
-        Vorname = vorname;
+        this.vorname = vorname;
     }
 
     public String getNachname() {
-        return Nachname;
+        return nachname;
     }
 
     public void setNachname(String nachname) {
-        Nachname = nachname;
+        this.nachname = nachname;
     }
 
-    public double getIncome() {
-        return income;
+    public String getBenutzername() {
+        return benutzername;
     }
 
-    public void setIncome(double income) {
-        this.income = income;
+    public void setBenutzername(String benutzername) {
+        this.benutzername = benutzername;
+    }
+
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 }

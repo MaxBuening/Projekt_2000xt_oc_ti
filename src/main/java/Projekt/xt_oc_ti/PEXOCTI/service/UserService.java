@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public User create(UserCreateRequest request){
-        var userEntity = new UserEntity(request.getVorname(), request.getNachname(), request.getIncome());
+        var userEntity = new UserEntity(request.getVorname(), request.getNachname(), request.getBenutzername(), request.getPasswort());
         userEntity = userRepository.save(userEntity);
         return transformEntity(userEntity);
     }
@@ -33,9 +33,10 @@ public class UserService {
     private User transformEntity(UserEntity userEntity){
         return new User(
                 userEntity.getId(),
-                userEntity.getFirstName(),
-                userEntity.getLastName(),
-                userEntity.getIncome()
+                userEntity.getVorname(),
+                userEntity.getNachnahme(),
+                userEntity.getBenutzername(),
+                userEntity.getPasswort()
         );
     }
 }

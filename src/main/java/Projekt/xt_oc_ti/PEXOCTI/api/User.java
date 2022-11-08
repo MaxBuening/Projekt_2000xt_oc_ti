@@ -2,39 +2,17 @@ package Projekt.xt_oc_ti.PEXOCTI.api;
 
 public class User {
     Long id;
-    String Vorname;
-    String Nachname;
-    double income;
+    String vorname;
+    String nachname;
+    String benutzername;
+    String passwort;
 
-    public User(Long id,String vorname, String nachname, double income) {
+    public User(Long id, String vorname, String nachname, String benutzername, String passwort) {
         this.id = id;
-        Vorname = vorname;
-        Nachname = nachname;
-        this.income = income;
-    }
-
-    public String getVorname() {
-        return Vorname;
-    }
-
-    public void setVorname(String vorname) {
-        Vorname = vorname;
-    }
-
-    public String getNachname() {
-        return Nachname;
-    }
-
-    public void setNachname(String nachname) {
-        Nachname = nachname;
-    }
-
-    public double getIncome() {
-        return income;
-    }
-
-    public void setIncome(double income) {
-        this.income = income;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.benutzername = benutzername;
+        this.passwort = passwort;
     }
 
     public Long getId() {
@@ -43,5 +21,37 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
+
+    public String getBenutzername() {
+        return benutzername;
+    }
+
+    public void setBenutzername(String benutzername) {
+        this.benutzername = benutzername;
+    }
+
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 }
