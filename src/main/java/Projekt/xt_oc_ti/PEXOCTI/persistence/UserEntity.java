@@ -1,7 +1,5 @@
 package Projekt.xt_oc_ti.PEXOCTI.persistence;
 
-import Projekt.xt_oc_ti.PEXOCTI.api.User;
-
 import javax.persistence.*;
 
 @Entity(name = "Benutzer")
@@ -15,8 +13,8 @@ public class UserEntity {
     @Column(name = "vorname", nullable = false)
     private String vorname;
 
-    @Column(name = "nachnahme", nullable = false)
-    private String nachnahme;
+    @Column(name = "nachname", nullable = false)
+    private String nachname;
 
     @Column(name = "benutzername", nullable = false)
     private String benutzername;
@@ -26,7 +24,7 @@ public class UserEntity {
 
     public UserEntity(String vorname, String nachnahme, String benutzername, String passwort) {
         this.vorname = vorname;
-        this.nachnahme = nachnahme;
+        this.nachname = nachnahme;
         this.benutzername = benutzername;
         this.passwort = passwort;
     }
@@ -49,12 +47,12 @@ public class UserEntity {
         this.vorname = vorname;
     }
 
-    public String getNachnahme() {
-        return nachnahme;
+    public String getNachname() {
+        return nachname;
     }
 
-    public void setNachnahme(String nachnahme) {
-        this.nachnahme = nachnahme;
+    public void setNachname(String nachnahme) {
+        this.nachname = nachnahme;
     }
 
     public String getBenutzername() {

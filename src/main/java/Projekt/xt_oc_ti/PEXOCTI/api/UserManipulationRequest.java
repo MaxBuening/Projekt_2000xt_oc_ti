@@ -1,12 +1,12 @@
 package Projekt.xt_oc_ti.PEXOCTI.api;
 
-public class UserCreateRequest {
+public class UserManipulationRequest {
     String vorname;
     String nachname;
     String benutzername;
     String passwort;
 
-    public UserCreateRequest(String vorname, String nachname, String benutzername, String passwort) {
+    public UserManipulationRequest(String vorname, String nachname, String benutzername, String passwort) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.benutzername = benutzername;
