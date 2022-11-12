@@ -2,6 +2,7 @@ package Projekt.xt_oc_ti.PEXOCTI.service;
 
 import Projekt.xt_oc_ti.PEXOCTI.api.User;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
+import Projekt.xt_oc_ti.PEXOCTI.persistence.KontostandEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserRepository;
 import org.springframework.stereotype.Service;
@@ -57,12 +58,14 @@ public class UserService {
     }
 
     private User transformEntity(UserEntity userEntity){
+        var kontostandIds = userEntity.getKontostand().stream().map(KontostandEntity::getId).collect(Collectors.toList());
         return new User(
                 userEntity.getId(),
                 userEntity.getVorname(),
                 userEntity.getNachname(),
                 userEntity.getBenutzername(),
-                userEntity.getPasswort()
+                userEntity.getPasswort(),
+                kontostandIds
         );
     }
 

@@ -1,6 +1,8 @@
 package Projekt.xt_oc_ti.PEXOCTI.persistence;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Benutzer")
 public class UserEntity {
@@ -21,6 +23,11 @@ public class UserEntity {
 
     @Column(name = "passwort")
     private String passwort;
+
+    @OneToMany(mappedBy = "benuterId_fk", fetch = FetchType.EAGER)
+    private List<KontostandEntity> kontostand =new ArrayList<>();
+
+
 
     public UserEntity(String vorname, String nachnahme, String benutzername, String passwort) {
         this.vorname = vorname;
@@ -70,4 +77,8 @@ public class UserEntity {
     public void setPasswort(String passwort) {
         this.passwort = passwort;
     }
+
+    public List<KontostandEntity> getKontostand() {return kontostand;}
+
+    public void setKontostand(List<KontostandEntity> kontostand) {this.kontostand = kontostand;}
 }

@@ -1,18 +1,22 @@
 package Projekt.xt_oc_ti.PEXOCTI.api;
 
+import java.util.List;
+
 public class User {
     Long id;
     String vorname;
     String nachname;
     String benutzername;
     String passwort;
+    List<Long> kontostandIDs;
 
-    public User(Long id, String vorname, String nachname, String benutzername, String passwort) {
+    public User(Long id, String vorname, String nachname, String benutzername, String passwort, List<Long> kontostandIDs) {
         this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.benutzername = benutzername;
         this.passwort = passwort;
+        this.kontostandIDs = kontostandIDs;
     }
 
     public Long getId() {
@@ -53,5 +57,13 @@ public class User {
 
     public void setPasswort(String passwort) {
         this.passwort = passwort;
+    }
+
+    public List<Long> getKontostandIDs() {
+        return kontostandIDs;
+    }
+
+    public void setKontostandIDs(List<Long> kontostandIDs) {
+        this.kontostandIDs = kontostandIDs;
     }
 }
