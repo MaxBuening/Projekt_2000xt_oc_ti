@@ -19,15 +19,15 @@ public class KontoRestController {
         this.kontostandservice = kontostandservice;
     }
 
-    @GetMapping(path = "/api/user/{id}/kontostand")
-    public ResponseEntity<List<Kontostand>> kontostaendeById(@PathVariable Long id){
+    @GetMapping(path = "/api/user/kontostand")
+    public ResponseEntity<List<Kontostand>> kontostaendeById(Long id){
         return ResponseEntity.ok(kontostandservice.findAll(id));
     }
 
-    @PostMapping(path = "/api/user/{id}/kontostand")
-    public ResponseEntity<Void> createKontostand (@PathVariable Long id, @RequestBody KontostandManipulation request) throws URISyntaxException {
+    @PostMapping(path = "/api/user/kontostand")
+    public ResponseEntity<Void> createKontostand ( @RequestBody KontostandManipulation request) throws URISyntaxException {
         var kontostand = kontostandservice.create(request);
-        URI uri = new URI("/api/user/{id}/kontostand/"+ kontostand.getId());
+        URI uri = new URI("/api/user/kontostand/"+ kontostand.getId());
         return ResponseEntity.created(uri).build();
     }
 
