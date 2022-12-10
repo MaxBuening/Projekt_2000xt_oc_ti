@@ -14,6 +14,9 @@ public class KontostandManipulation {
         this.datum = datum;
     }
 
+    public KontostandManipulation() {
+    }
+
     public Long getBenutzerID_Fk() {
         return benutzerID_Fk;
     }

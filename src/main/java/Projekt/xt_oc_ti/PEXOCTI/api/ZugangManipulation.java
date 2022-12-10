@@ -14,6 +14,9 @@ public class ZugangManipulation {
         this.datum = datum;
     }
 
+    public ZugangManipulation() {
+    }
+
     public Long getBenutzerID_Fk() {
         return benutzerID_Fk;
     }

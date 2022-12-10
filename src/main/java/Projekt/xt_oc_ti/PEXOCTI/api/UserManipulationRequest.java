@@ -13,6 +13,8 @@ public class UserManipulationRequest {
         this.passwort = passwort;
     }
 
+    public UserManipulationRequest() {
+    }
 
     public String getVorname() {
         return vorname;

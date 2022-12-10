@@ -14,6 +14,9 @@ public class AbgaengeManipulation {
         this.datum = datum;
     }
 
+    public AbgaengeManipulation() {
+    }
+
     public Long getBenutzerID_Fk() {
         return benutzerID_Fk;
     }

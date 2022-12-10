@@ -9,6 +9,9 @@ public class UserLoginRequest {
         this.passwort = passwort;
     }
 
+    public UserLoginRequest() {
+    }
+
     public String getBenutzername() {
         return benutzername;
     }
