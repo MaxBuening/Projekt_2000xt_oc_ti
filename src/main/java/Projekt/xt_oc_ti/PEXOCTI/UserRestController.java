@@ -5,6 +5,7 @@ import Projekt.xt_oc_ti.PEXOCTI.api.UserLoginRequest;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
 import Projekt.xt_oc_ti.PEXOCTI.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -58,7 +59,7 @@ public class UserRestController {
         Cookie cookie = new Cookie("refresh-token",login.getRefreshToken().getToken());
         cookie.setMaxAge(3600);
         cookie.setHttpOnly(true);
-        cookie.setPath("/api/login");
+        cookie.setPath("/api");
         response.addCookie(cookie);
 
      return login != null ? ResponseEntity.ok(login.getAccessSecret().getToken()) : ResponseEntity.notFound().build();
@@ -71,7 +72,7 @@ public class UserRestController {
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(path = "/api/user/{id}")
+    @DeleteMapping(path = "/user/{id}")
     public ResponseEntity<Void> deleteUser (@PathVariable Long id){
         boolean succes = userService.deleteById(id);
         return succes ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
@@ -80,5 +81,15 @@ public class UserRestController {
     @PostMapping(value = "/refresh")
     public ResponseEntity<String> refresh(@CookieValue("refresh-token") String refreshToken){
         return ResponseEntity.ok(userService.refreshAccess(refreshToken).getAccessSecret().getToken());
+    }
+
+    @PostMapping(value = "/logout")
+    public ResponseEntity<String> logout(HttpServletResponse response){
+        Cookie cookie = new Cookie("refresh-token",null);
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+
+        response.addCookie(cookie);
+        return ResponseEntity.ok("Ausgeloggt");
     }
 }
