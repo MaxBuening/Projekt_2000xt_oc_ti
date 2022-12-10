@@ -1,12 +1,17 @@
 package Projekt.xt_oc_ti.PEXOCTI.service;
 
+import Projekt.xt_oc_ti.PEXOCTI.Exceptions.BenutzerNichtGefundenException;
+import Projekt.xt_oc_ti.PEXOCTI.Exceptions.FalscherNameOderPasswortException;
+import Projekt.xt_oc_ti.PEXOCTI.Exceptions.NutzerExistiertBereitsException;
 import Projekt.xt_oc_ti.PEXOCTI.api.User;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.KontostandEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,9 +19,15 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final String accessTokenSecret;
+    private final String refreshTokenSecret;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, @Value("${application.access-token-secret}") String accessTokenSecret, @Value("${application.refresh-token-secret}") String refreshTokenSecret) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.accessTokenSecret = accessTokenSecret;
+        this.refreshTokenSecret = refreshTokenSecret;
     }
 
     public List<User> findAll(){
@@ -31,8 +42,14 @@ public class UserService {
     }
 
     public User create(UserManipulationRequest request){
-        var userEntity = new UserEntity(request.getVorname(), request.getNachname(), request.getBenutzername(), request.getPasswort());
-        userEntity = userRepository.save(userEntity);
+        var userEntity = new UserEntity(request.getVorname(), request.getNachname(), request.getBenutzername(), passwordEncoder.encode(request.getPasswort()));
+
+        try{
+            userEntity = userRepository.save(userEntity);
+        }catch (DataIntegrityViolationException exception){
+            throw new NutzerExistiertBereitsException();
+        }
+
         return transformEntity(userEntity);
     }
 
@@ -68,4 +85,22 @@ public class UserService {
                 kontostandIds
         );
     }
+
+    public Login login(String nutzername, String passwort){
+        var user = userRepository.findByBenutzername(nutzername).orElseThrow(FalscherNameOderPasswortException::new);
+        User us = transformEntity(user);
+
+        if(!passwordEncoder.matches(passwort, us.getPasswort())) throw new FalscherNameOderPasswortException();
+        return Login.of(us.getId(), accessTokenSecret, refreshTokenSecret);
+    }
+
+    public User getBenutzerFromToken(String token){
+        return transformEntity(userRepository.findById(Jwt.from(token, accessTokenSecret).getUserId()).orElseThrow(BenutzerNichtGefundenException::new));
+    }
+
+    public Login refreshAccess(String refreshToken){
+        var refreshJwt = Jwt.from(refreshToken, refreshTokenSecret);
+        return Login.of(refreshJwt.getUserId(), accessTokenSecret,refreshJwt);
+    }
+
 }
