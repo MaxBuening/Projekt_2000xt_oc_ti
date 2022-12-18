@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping(value = "/api")
 public class UserRestController {
@@ -38,7 +39,7 @@ public class UserRestController {
     */
 
 
-    @PutMapping(path = "/api/user/{id}")
+    @PutMapping(path = "/user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserManipulationRequest request){
         var user = userService.update(id, request);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
