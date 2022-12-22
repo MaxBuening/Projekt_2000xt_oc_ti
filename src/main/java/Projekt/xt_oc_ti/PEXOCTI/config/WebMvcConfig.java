@@ -33,6 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
         registry.addMapping("/api/login").allowedOrigins("http://localhost:3000/", "http://localhost:3000/login").allowedMethods("*").allowCredentials(true);
         registry.addMapping("/api/refresh").allowedOrigins("http://localhost:3000/", "http://localhost:3000/login").allowedMethods("*").allowCredentials(true);
+        registry.addMapping("/api/logout").allowedOrigins("http://localhost:3000/", "http://localhost:3000/login").allowedMethods("*").allowCredentials(true);
     }
 
 
