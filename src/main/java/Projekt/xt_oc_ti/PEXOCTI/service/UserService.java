@@ -8,6 +8,7 @@ import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.KontostandEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserRepository;
+import Projekt.xt_oc_ti.PEXOCTI.persistence.ZugangEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -75,7 +76,7 @@ public class UserService {
     }
 
     private User transformEntity(UserEntity userEntity){
-        var kontostandIds = userEntity.getKontostand().stream().map(KontostandEntity::getId).collect(Collectors.toList());
+        var kontostandIds = userEntity.getKontostand().stream().map(ZugangEntity::getId).collect(Collectors.toList());
         return new User(
                 userEntity.getId(),
                 userEntity.getVorname(),

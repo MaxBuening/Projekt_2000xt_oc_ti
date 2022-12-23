@@ -20,10 +20,10 @@ public class ZugangRestController {
         this.zugangService = zugangService;
     }
 
-    @PostMapping(path = "/api/user/{id}/zugang")
-    public ResponseEntity<Void> createZugang(@PathVariable Long id, @RequestBody ZugangManipulation request) throws URISyntaxException {
+    @PostMapping(path = "/api/user/zugang")
+    public ResponseEntity<Void> createZugang(@RequestBody ZugangManipulation request) throws URISyntaxException {
         var zugang = zugangService.create(request);
-        URI uri = new URI("/api/user/"+id.toString()+"/"+zugang.getId());
+        URI uri = new URI("/api/user/"+zugang.getId());
         return ResponseEntity.created(uri).build();
     }
 

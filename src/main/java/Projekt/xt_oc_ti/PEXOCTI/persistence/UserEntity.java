@@ -25,7 +25,7 @@ public class UserEntity {
     private String passwort;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<KontostandEntity> benutzerId_fk =new ArrayList<>();
+    private List<ZugangEntity> benutzerId_fk =new ArrayList<>();
 
 
 
@@ -78,7 +78,7 @@ public class UserEntity {
         this.passwort = passwort;
     }
 
-    public List<KontostandEntity> getKontostand() {return benutzerId_fk;}
+    public List<ZugangEntity> getKontostand() {return benutzerId_fk;}
 
-    public void setbenutzerId_fk(List<KontostandEntity> kontostand) {this.benutzerId_fk = kontostand;}
+    public void setbenutzerId_fk(List<ZugangEntity> kontostand) {this.benutzerId_fk = kontostand;}
 }
