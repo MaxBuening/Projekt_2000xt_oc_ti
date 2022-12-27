@@ -1,11 +1,11 @@
 package Projekt.xt_oc_ti.PEXOCTI;
 
+import Projekt.xt_oc_ti.PEXOCTI.api.Kontostand;
 import Projekt.xt_oc_ti.PEXOCTI.api.User;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserLoginRequest;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
 import Projekt.xt_oc_ti.PEXOCTI.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -69,7 +71,6 @@ public class UserRestController {
     @GetMapping(path = "/user")
     public ResponseEntity<User> benutzer (HttpServletRequest request){
         var user = (User) request.getAttribute("user");
-
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 

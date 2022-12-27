@@ -7,6 +7,7 @@ public class ZugangManipulation {
     Double amount;
     String beschriftug;
     LocalDate datum;
+
     public ZugangManipulation(Long benutzerID_Fk, Double amount, String beschriftung, LocalDate datum){
         this.benutzerID_Fk = benutzerID_Fk;
         this.amount = amount;
