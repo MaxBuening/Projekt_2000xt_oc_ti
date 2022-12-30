@@ -38,6 +38,10 @@ public class ZugangRestController {
         return ResponseEntity.ok(zugangService.findAll());
     }
 
+    @DeleteMapping (path = "/api/user/zugang/{id}")
+    public ResponseEntity<Void> deleteZugang (@PathVariable Long id){
+        return zugangService.deleteById(id)? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
     // NOTE: Der Text hier drunter gilt auch hier, aber halt mit Zugang anstatt Abgang
     // NOTE: deleteAbgang funktioniert nicht weil der Delete Pfad bei delete user irgendwie ähnlich genug ist,
     //       dass der irgendwie auch ausgeführt wird. Führt zu einem Foreign Key constraint violation weil bie

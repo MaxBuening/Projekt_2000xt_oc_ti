@@ -36,9 +36,9 @@ public class ZugangService {
     }
 
     public boolean deleteById(Long id){
-        var zugangEntity = zugangRepository.findById(id);
-        if (userRepository.existsById(id)){
-            userRepository.deleteById(id);
+       // var zugangEntity = zugangRepository.findById(id);
+        if (zugangRepository.existsById(id)){
+            zugangRepository.deleteById(id);
             return true;
         }
         return false;
