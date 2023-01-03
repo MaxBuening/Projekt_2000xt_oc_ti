@@ -67,7 +67,7 @@ public class UserService {
     }
 
     public boolean deleteById (Long id){
-        var userEntityOptional = userRepository.findById(id);
+
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
             return true;
@@ -75,7 +75,7 @@ public class UserService {
         return false;
     }
 
-    private User transformEntity(UserEntity userEntity){
+     public User transformEntity(UserEntity userEntity){
         var kontostandIds = userEntity.getKontostand().stream().map(ZugangEntity::getId).collect(Collectors.toList());
         return new User(
                 userEntity.getId(),
