@@ -25,7 +25,7 @@ public class KontoRestController {
     }
 
     @PostMapping(path = "/api/user/kontostand")
-    public ResponseEntity<Void> createKontostand ( @RequestBody KontostandManipulation request) throws URISyntaxException {
+    public ResponseEntity<Void> createKontostand (@RequestBody KontostandManipulation request) throws URISyntaxException {
         var kontostand = kontostandservice.create(request);
         URI uri = new URI("/api/user/kontostand/"+ kontostand.getId());
         return ResponseEntity.created(uri).build();

@@ -26,7 +26,7 @@ public class Jwt {
 
     public static Jwt of(Long userId, Long validityInMinutes, String secretKey) {
         var issueDate = Instant.now();
-        //SecretKey keys = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS256.getJcaName());
+
         var expiration = issueDate.plus(validityInMinutes, ChronoUnit.MINUTES);
         final String tokenStr = Jwts.builder()
                 .claim("user_id", userId)
