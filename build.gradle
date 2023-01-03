@@ -18,7 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.5'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools:2.7.5'
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.5'
-	implementation 'com.okta.spring:okta-spring-boot-starter:2.1.6'
+
 
 	//Webtoken
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
@@ -27,10 +27,11 @@ dependencies {
 
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.5'
+	testImplementation 'com.h2database:h2:1.4.200'
 	runtimeOnly 'com.h2database:h2:2.1.214'
 
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }

@@ -1,6 +1,5 @@
 package Projekt.xt_oc_ti.PEXOCTI;
 
-import Projekt.xt_oc_ti.PEXOCTI.api.Kontostand;
 import Projekt.xt_oc_ti.PEXOCTI.api.User;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserLoginRequest;
 import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -26,19 +23,6 @@ public class UserRestController {
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
-
-    /*
-    @GetMapping(path = "/api/user")
-    public ResponseEntity<List<User>> user(){
-        return ResponseEntity.ok(userService.findAll());
-    }
-
-    @GetMapping(path = "/api/user/{id}")
-    public ResponseEntity<User> userById(@PathVariable Long id){
-        var user = userService.findById(id);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
-    */
 
 
     @PutMapping(path = "/user/{id}")
