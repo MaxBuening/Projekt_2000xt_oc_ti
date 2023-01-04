@@ -69,7 +69,7 @@ public class UserRestControllerTest {
                 .content(userToCreateAsJson))
                 .andExpect(status().isBadRequest())
                 .andExpect(result -> {assertTrue(result.getResolvedException() instanceof NutzerExistiertBereitsException);})
-                .andExpect(result -> assertEquals("400 BAD_REQUEST Benutzername existiert bereits", result.getResolvedException().getMessage()));
+                .andExpect(result -> assertEquals("400 BAD_REQUEST \"Benutzername existiert bereits\"", result.getResolvedException().getMessage()));
 
     }
 
