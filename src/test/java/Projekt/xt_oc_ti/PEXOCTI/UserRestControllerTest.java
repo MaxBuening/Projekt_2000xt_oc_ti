@@ -3,8 +3,6 @@ package Projekt.xt_oc_ti.PEXOCTI;
 
 import Projekt.xt_oc_ti.PEXOCTI.Exceptions.NutzerExistiertBereitsException;
 import Projekt.xt_oc_ti.PEXOCTI.api.User;
-import Projekt.xt_oc_ti.PEXOCTI.api.UserManipulationRequest;
-import Projekt.xt_oc_ti.PEXOCTI.persistence.UserEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserRepository;
 import Projekt.xt_oc_ti.PEXOCTI.service.UserService;
 import org.hamcrest.Matchers;
