@@ -1,5 +1,6 @@
 package Projekt.xt_oc_ti.PEXOCTI.service;
 
+import Projekt.xt_oc_ti.PEXOCTI.api.User;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserEntity;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.UserRepository;
 import Projekt.xt_oc_ti.PEXOCTI.persistence.ZugangEntity;
@@ -12,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,6 +68,8 @@ public class UserServiceTest implements WithAssertions {
         assertThat(result).isTrue();
     }
 
+
+
     @Test
     @DisplayName("should return false if user to delete does not exist")
     void testDelete2(){
@@ -80,4 +84,5 @@ public class UserServiceTest implements WithAssertions {
         verifyNoMoreInteractions(repo);
         assertThat(result).isFalse();
     }
+
 }
