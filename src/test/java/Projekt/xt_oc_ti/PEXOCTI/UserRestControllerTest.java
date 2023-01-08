@@ -3,12 +3,10 @@ package Projekt.xt_oc_ti.PEXOCTI;
 
 import Projekt.xt_oc_ti.PEXOCTI.Exceptions.NutzerExistiertBereitsException;
 import Projekt.xt_oc_ti.PEXOCTI.api.User;
-import Projekt.xt_oc_ti.PEXOCTI.persistence.UserRepository;
 import Projekt.xt_oc_ti.PEXOCTI.service.UserService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -56,9 +54,7 @@ public class UserRestControllerTest {
     void should_return_400_http_status_and_NutzerExistiertBereitsException_when_creating_a_user_where_benutzername_already_exists() throws Exception {
         //given
         String userToCreateAsJson = "{\"vorname\": \"Testi\", \"nachname\":\"McTestface\", \"benutzername\":\"TESTosteron\", \"passwort\": \"T3S7!\" }";
-        var repo = Mockito.mock(UserRepository.class);
-        var user = new User(7357L,null, null, "Test", null, Collections.emptyList());
-        String exceptionParam = "Benutzername existiert bereits";
+
 
         doThrow(new NutzerExistiertBereitsException()).when(userService).create(any());
 
